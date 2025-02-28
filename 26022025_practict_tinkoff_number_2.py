@@ -1,37 +1,26 @@
-import random
-
-def cash(d):
-    mass = []
-    for i in range(d):
-        mass.append(random.randint(1, 1000))
-    return mass
-
 def result(m, t):
-    mmm = []
-    for i in range(len(m)):
-        u = m[i]
-        summa = 0
-        for j in range(3):
-            x = 0
-            k = 0
-            while x < u:
-                x = t[k]
-                k += 1
-            summa += t[k - 2]
-            u -= t[k - 2]
-        if u < 1 and summa != m[i]:
-            mmm.append(-1)
-            break
-        else: mmm.append(summa)
-    return mmm    
+    summa = 0
+    g = m
+    for i in range(3):
+        x = 0
+        o = 0
+        while x <= m:
+            x = t[o]
+            o += 1
+            if x > m and o < 1:
+                return -1
+        m -= t[o-2]
+        summa +=t[o-2]
+    if summa != g and m < 0:
+        return -1
+    else:
+        return summa
 
 two = []
-
 for i in range(72):
     two.append(2**i)
     
-days = random.randint(1, 10)
-money = cash(days)
-l = result(money, two)
-for i in range(len(money)):
-    print(money[i], l[i])
+days = int(input('Введите количество дней '))
+for i in range(days):
+    money = int(input('Введите количество бурлей на день '))
+    print(result(money, two))
