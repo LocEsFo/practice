@@ -19,8 +19,12 @@ def result(m, t):
 two = []
 for i in range(72):
     two.append(2**i)
-    
+
+cout = 0
+
 days = int(input('Введите количество дней '))
 for i in range(days):
-    money = int(input('Введите количество бурлей на день '))
-    print(result(money, two))
+    while cout != -1:
+        money = int(input('Введите количество бурлей на день '))
+        print(result(money, two))
+        cout = result(money,two)
